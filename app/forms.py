@@ -10,7 +10,7 @@ class CreateProfile(FlaskForm):
     lname = StringField('Last Name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()],render_kw={"placeholder":"eg. jdoe@example.com"})
     location = StringField('Location', validators=[DataRequired()],render_kw={"placeholder":"eg. Kingston,Jamaica"})
-    gender = SelectField('Gender',choices=[('male','Male'),('female','Female')])
+    gender = SelectField('Gender',choices=[('Male','Male'),('Female','Female')])
     biography = TextAreaField('Biography',validators=[DataRequired()])
     photo = FileField('Photo',validators=[FileRequired(),FileAllowed(['jpg','jpeg','png','Images Only'])])
 

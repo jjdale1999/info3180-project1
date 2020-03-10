@@ -18,8 +18,9 @@ class UserProfile(db.Model):
     gender = db.Column(db.String(80))
     biography = db.Column(db.String(80))
     photo = db.Column(db.String(80))
+    created_date= db.Column(db.String(80))
 
-    def __init__(self, fname, lname, email, location,gender,biography,photo):
+    def __init__(self, fname, lname, email, location,gender,biography,photo, created_date):
         self.fname = fname
         self.lname = lname
         self.email = email
@@ -27,6 +28,7 @@ class UserProfile(db.Model):
         self.gender = gender
         self.biography = biography
         self.photo = photo
+        self.created_date=created_date
     
     def is_authenticated(self):
         return True
@@ -44,4 +46,4 @@ class UserProfile(db.Model):
             return str(self.id)  # python 3 support
 
     def __repr__(self):
-        return '<User %r %r %r %r %r %r %r>' % (self.fname, self.lname, self.email, self.location,self.gender,self.biography,self.photo)
+        return '<User %r %r %r %r %r %r %r %r>' % (self.fname, self.lname, self.email, self.location,self.gender,self.biography,self.photo,self.created_date)

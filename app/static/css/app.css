@@ -20,9 +20,53 @@ body {
     height:230px;
 }
 .images{
+    margin-top:5%;
     width:180px;
-    height:130px;
+    height:150px;
 }
 #col3{
-    margin-top: 20%;
+    margin-left:20%;
+    margin-top: 30%;
 }
+#col2{
+    margin-top: 8%;
+}
+
+#col2 li{
+    margin-bottom: 1em;
+}
+
+.card-body li{
+    margin-bottom: 1em;
+}
+
+.greenbtn {
+    color: #fff;
+    background-color: rgb(128,211,57);
+    border-color: rgb(128,211,57);
+  }
+
+  .smallimg{
+    width:35px;
+    height:30px;
+  }
+
+  
+.text{
+    margin-left:10%;
+}
+  .cardbod{
+    margin:5%;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-top: 6px solid rgb(72,141,218);
+    border-radius: 0.5rem;
+  }
+
+  .margindiv{
+      margin:2%;
+      
+  }
+  .ubtn{
+      margin-left: 2em;
+      width:40%;
+  }

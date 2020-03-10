@@ -12,7 +12,10 @@ from app.forms import CreateProfile
 from app.models import UserProfile
 from werkzeug.security import check_password_hash
 from werkzeug.utils import secure_filename
+import datetime
 
+def format_date_joined(dat):
+    return  dat.strftime("%B %d, %Y") 
 ###
 # Routing for your application.
 ###
@@ -40,13 +43,14 @@ def profile():
                 gender = createprofile.gender.data
                 biography=createprofile.biography.data
                 photo= createprofile.photo.data
+                created_date=format_date_joined(datetime.datetime.now())
                 filename=secure_filename(photo.filename)
                 photo.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
-                user = UserProfile(fname, lname, email, location,gender,biography,'/uploads/'+filename)
+                user = UserProfile(fname, lname, email, location,gender,biography,'/uploads/'+filename,created_date)
                 db.session.add(user)
                 db.session.commit()
 
-                return render_template("home.html")  # they should be redirected to a secure-page route instead
+                return render_template("home.html") 
     else:
                 flash_errors(createprofile)
     return render_template('addprofile.html',form=createprofile)    
@@ -54,10 +58,6 @@ def profile():
 @app.route('/profiles')
 def profiles():
     user = UserProfile.query.all()
-    print(user)
-
-
-    # return render_template('users_show.html', id = num, users = users)
     return render_template('profiles.html',users=user)
     
 
@@ -65,17 +65,19 @@ def profiles():
 def profileuser(userid):
     """Render the website's about page."""  
     user = UserProfile.query.get(userid)
-    fname = user.fname
-    lname = user.lname
-    email = user.email
-    location= user.location
-    gender = user.gender
-    biography=user.biography
-    photo= user.photo
-    # return render_template('about.html', name="Mary Jane")
-    return render_template('profile.html',lname=lname,email=email,location=location,gender=gender,biography=biography,photo=photo)
-
-
+    if user is not None:
+        fname = user.fname
+        lname = user.lname
+        email = user.email
+        location= user.location
+        gender = user.gender
+        biography=user.biography
+        photo= user.photo
+        created_date=user.created_date
+        # return render_template('about.html', name="Mary Jane")
+        return render_template('profile.html',fname=fname,lname=lname,email=email,location=location,gender=gender,biography=biography,photo=photo,created_date=created_date)
+    flash("user not found",'danger')
+    return render_template('404.html')
 # Flash errors from the form if validation fails
 def flash_errors(form):
     for field, errors in form.errors.items():
@@ -84,18 +86,6 @@ def flash_errors(form):
                 getattr(form, field).label.text,
                 error
             ), 'danger')
-
-# ###
-# The functions below should be applicable to all Flask apps.
-###
-
-
-@app.route('/<file_name>.txt')
-def send_text_file(file_name):
-    """Send your static text file."""
-    file_dot_text = file_name + '.txt'
-    return app.send_static_file(file_dot_text)
-
 
 @app.after_request
 def add_header(response):
