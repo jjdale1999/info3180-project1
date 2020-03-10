@@ -6,11 +6,11 @@ from wtforms.validators import DataRequired, Email
 from wtforms import PasswordField
 from wtforms.validators import InputRequired
 class CreateProfile(FlaskForm):
-    fname = StringField('Name', validators=[DataRequired()],render_kw={"placeholder":"test"})
-    lname = StringField('Name', validators=[DataRequired()])
+    fname = StringField('First Name', validators=[DataRequired()],render_kw={"placeholder":"test"})
+    lname = StringField('Last Name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()],render_kw={"placeholder":"eg. jdoe@example.com"})
     location = StringField('Location', validators=[DataRequired()],render_kw={"placeholder":"eg. Kingston,Jamaica"})
-    gender = SelectField('Gender',choices=[('','select a gender'),('male','Male'),('female','Female')],render_kw={"placeholder":"test"})
+    gender = SelectField('Gender',choices=[('male','Male'),('female','Female')])
     biography = TextAreaField('Biography',validators=[DataRequired()])
     photo = FileField('Photo',validators=[FileRequired(),FileAllowed(['jpg','jpeg','png','Images Only'])])
 

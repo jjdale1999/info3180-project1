@@ -1,3 +1,28 @@
 body {
     padding-top: 5rem;
 }
+
+.card-lay{
+    display:grid;
+    grid-gap: 50px;
+    list-style: none;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.user-card-lay{
+    display:grid;
+    grid-gap: 50px;
+    list-style: none;
+    grid-template-columns: repeat(2, 1fr);
+}
+.user-images{
+    width:280px;
+    height:230px;
+}
+.images{
+    width:180px;
+    height:130px;
+}
+#col3{
+    margin-top: 20%;
+}

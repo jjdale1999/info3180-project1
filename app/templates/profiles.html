@@ -1,0 +1,29 @@
+{% extends "base.html"%}
+{% block main %}
+    <h1>Secure Page</h1>
+ 
+  <br>
+  
+    {% for user in users%}
+    <form action="{{ url_for('profileuser',userid=user.id) }}" method="get">
+        <div class="card" id="card-lay" style="width:800px">
+            <ul class="card-lay">
+
+                <li><img class="images" src="{{url_for('static',filename=user.photo)}}" alt="image" ></li>
+                <div class="card-body">
+                    <li><h4 class="card-title">{{user.fname}}  {{user.lname}}</h4></li>
+                    <li class="card-text"> {{user.gender}}</li>
+                    <li class="card-text"> {{user.location}}</li>
+                </div>
+                <li id="col3">
+                    <button type="submit">View Profile</button>
+                </li>
+            </ul>
+            
+        </div>
+    
+     </form>
+        
+       
+    {% endfor %}
+{% endblock %}

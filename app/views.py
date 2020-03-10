@@ -4,17 +4,14 @@ Jinja2 Documentation:    http://jinja.pocoo.org/2/documentation/
 Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
-
-from app import app, db, login_manager
+import os
+from app import app, db
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user, login_required
 from app.forms import CreateProfile
 from app.models import UserProfile
 from werkzeug.security import check_password_hash
-
-
-
-
+from werkzeug.utils import secure_filename
 
 ###
 # Routing for your application.
@@ -34,71 +31,61 @@ def about():
 @app.route('/profile',methods=['POST', 'GET'])
 def profile():
     createprofile = CreateProfile()
-    return render_template('addprofile.html',form=createprofile)
     
+    if request.method == "POST" and  createprofile.validate_on_submit():
+                fname = createprofile.fname.data
+                lname = createprofile.lname.data
+                email = createprofile.email.data
+                location= createprofile.location.data
+                gender = createprofile.gender.data
+                biography=createprofile.biography.data
+                photo= createprofile.photo.data
+                filename=secure_filename(photo.filename)
+                photo.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
+                user = UserProfile(fname, lname, email, location,gender,biography,'/uploads/'+filename)
+                db.session.add(user)
+                db.session.commit()
+
+                return render_template("home.html")  # they should be redirected to a secure-page route instead
+    else:
+                flash_errors(createprofile)
+    return render_template('addprofile.html',form=createprofile)    
 
 @app.route('/profiles')
-@login_required
 def profiles():
-    return render_template('secure_page.html')
+    user = UserProfile.query.all()
+    print(user)
+
+
+    # return render_template('users_show.html', id = num, users = users)
+    return render_template('profiles.html',users=user)
     
 
 @app.route('/profile/<userid>')
-@login_required
-def profileuser():
-    """Render the website's about page."""
+def profileuser(userid):
+    """Render the website's about page."""  
+    user = UserProfile.query.get(userid)
+    fname = user.fname
+    lname = user.lname
+    email = user.email
+    location= user.location
+    gender = user.gender
+    biography=user.biography
+    photo= user.photo
     # return render_template('about.html', name="Mary Jane")
-    return render_template('secure_page.html')
+    return render_template('profile.html',lname=lname,email=email,location=location,gender=gender,biography=biography,photo=photo)
 
 
-@app.route('/secure-page')
-@login_required
-def secure_page():
-    return render_template('secure_page.html')
+# Flash errors from the form if validation fails
+def flash_errors(form):
+    for field, errors in form.errors.items():
+        for error in errors:
+            flash(u"Error in the %s field - %s" % (
+                getattr(form, field).label.text,
+                error
+            ), 'danger')
 
-
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    form = LoginForm()
-    if request.method == "POST" and  form.validate_on_submit():
-        # change this to actually validate the entire form submission
-        # and not just one field
-        if form.username.data:
-            # Get the username and password values from the form.
-
-            # using your model, query database for a user based on the username
-            # and password submitted. Remember you need to compare the password hash.
-            # You will need to import the appropriate function to do so.
-            # Then store the result of that query to a `user` variable so it can be
-            # passed to the login_user() method below.
-            username = form.username.data
-            password = form.password.data
-            user=UserProfile.query.filter_by(username=username).first()
-            if user is not None and check_password_hash(user.password,password):
-
-            # get user id, load into session
-                login_user(user)
-                flash('Logged in successfully.','success')
-                return redirect(url_for("secure_page"))  # they should be redirected to a secure-page route instead
-
-            # remember to flash a message to the user
-            # return redirect(url_for("home"))  # they should be redirected to a secure-page route instead
-            else:
-                flash('Username or Password is incorrect.','danger')
-    return render_template("login.html", form=form)
-
-@app.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    return redirect(url_for('home'))
-# user_loader callback. This callback is used to reload the user object from
-# the user ID stored in the session
-@login_manager.user_loader
-def load_user(id):
-    return UserProfile.query.get(int(id))
-
-###
+# ###
 # The functions below should be applicable to all Flask apps.
 ###
 
