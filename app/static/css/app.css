@@ -1,5 +1,6 @@
 body {
     padding-top: 5rem;
+    background-color: rgb(234,242,249);
 }
 
 .card-lay{
@@ -51,11 +52,16 @@ body {
 .text{
     margin-left:10%;
 }
+.profile{
+    margin:5%;
+}
   .cardbod{
     margin:5%;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-top: 6px solid rgb(72,141,218);
     border-radius: 0.5rem;
+    background-color: white;
+
   }
 
   .margindiv{
@@ -74,3 +80,48 @@ body {
       border-radius: 10px;
 
   }
+  .lbtxt{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.txtbox{
+    width: 60%;
+    border-radius: 5px;
+}
+
+.formdiv{
+    margin:5%;
+    margin-left:20%;
+    /* border-top: 6px solid rgb(72,141,218); */
+    width:50%;
+
+}
+.formdiv h1{
+    margin-bottom:7%;
+}
+.formf{
+    border-top: 6px solid rgb(72,141,218);
+
+    background-color: white;
+    border-radius: 5px;
+}
+
+.formdiv div{
+    margin-top:10px;
+    margin-bottom:25px;
+    margin-left:40px;
+    font-size: large;
+}
+.bold{
+    font-weight: 500;
+}
+
+.textareabx
+{
+    width: 60%;
+    border-radius: 5px;
+    min-height: 50%;
+    max-height: 50%;
+}
