@@ -26,7 +26,7 @@ body {
 }
 #col3{
     margin-left:20%;
-    margin-top: 30%;
+    margin-top: 33%;
 }
 #col2{
     margin-top: 8%;
@@ -40,11 +40,7 @@ body {
     margin-bottom: 1em;
 }
 
-.greenbtn {
-    color: #fff;
-    background-color: rgb(128,211,57);
-    border-color: rgb(128,211,57);
-  }
+
 
   .smallimg{
     width:35px;
@@ -66,7 +62,15 @@ body {
       margin:2%;
       
   }
+  .greenbtn {
+    color: #fff;
+    background-color: rgb(128,211,57);
+    border-color: rgb(128,211,57);
+  }
   .ubtn{
       margin-left: 2em;
       width:40%;
+      padding: 7px;
+      border-radius: 10px;
+
   }
