@@ -125,3 +125,27 @@ body {
     min-height: 50%;
     max-height: 50%;
 }
+
+
+.home{
+    margin-top: 20%;
+  
+text-align: center;
+border-top:5px solid red;
+border-bottom:5px solid red;
+border-radius: 20px;
+
+}
+.home h1{
+    align-items: center;
+    align-content: center;
+    /* margin-left:10%; */
+        font-size: 90px;
+
+
+}
+.home h2{
+    /* margin-left:45%; */
+
+}
+

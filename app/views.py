@@ -49,8 +49,10 @@ def profile():
                 user = UserProfile(fname, lname, email, location,gender,biography,'/uploads/'+filename,created_date)
                 db.session.add(user)
                 db.session.commit()
+                user = UserProfile.query.all()
 
-                return render_template("home.html") 
+
+                return render_template("profiles.html",users=user) 
     else:
                 flash_errors(createprofile)
     return render_template('addprofile.html',form=createprofile)    
