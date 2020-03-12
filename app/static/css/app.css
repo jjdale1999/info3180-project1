@@ -7,10 +7,8 @@ body {
 
 .card-lay{
     display:grid;
-    /* grid-gap: 50px; */
     list-style: none;
     grid-template-columns: 0fr 1fr 1fr ;
-    /* position:relative; */
 
 }
 
@@ -36,7 +34,6 @@ body {
 
 }
 #col3{
-    /* margin-left:20%; */
     position:relative;
     text-align: center;
     margin-top: 70px;
@@ -82,13 +79,11 @@ body {
 
 }
   .cardbod{
-    /* margin:5%; */
     margin-bottom:5%;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-top: 6px solid rgb(72,141,218);
     border-radius: 0.5rem;
     background-color: white;
-    /* position:relative; */
 
 
   }
@@ -131,11 +126,7 @@ body {
 }
 
 .formdiv{
-    /* margin:5%; */
     margin-left:5%;
-    /* margin-left:20%; */
-    /* border-top: 6px solid rgb(72,141,218); */
-    /* width:100%; */
     position:relative;
 
 
