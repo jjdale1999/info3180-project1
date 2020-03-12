@@ -7,10 +7,10 @@ body {
 
 .card-lay{
     display:grid;
-    grid-gap: 50px;
+    /* grid-gap: 50px; */
     list-style: none;
-    grid-template-columns: repeat(3, 1fr);
-    position:relative;
+    grid-template-columns: 0.5fr 1fr 1fr ;
+    /* position:relative; */
 
 }
 
@@ -36,9 +36,11 @@ body {
 
 }
 #col3{
-    margin-left:20%;
-    margin-top: 33%;
+    /* margin-left:20%; */
     position:relative;
+    text-align: center;
+    margin-top: 70px;
+
 
 }
 #col2{
@@ -75,17 +77,18 @@ body {
 
 }
 .profile{
-    margin:5%;
+    /* margin:5%; */
     position:relative;
 
 }
   .cardbod{
-    margin:5%;
+    /* margin:5%; */
+    margin-bottom:5%;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-top: 6px solid rgb(72,141,218);
     border-radius: 0.5rem;
     background-color: white;
-    position:relative;
+    /* position:relative; */
 
 
   }
@@ -128,16 +131,17 @@ body {
 }
 
 .formdiv{
-    margin:5%;
-    margin-left:20%;
+    /* margin:5%; */
+    margin-left:5%;
+    /* margin-left:20%; */
     /* border-top: 6px solid rgb(72,141,218); */
-    width:100%;
+    /* width:100%; */
     position:relative;
 
 
 }
 .formdiv h1{
-    margin-bottom:7%;
+    margin-bottom:3%;
     position:relative;
 
 }
@@ -197,5 +201,10 @@ position:relative;
 .home h2{
     /* margin-left:45%; */
 
+}
+
+#profiles{
+    margin-left:5%;
+    /* margin-right:10%; */
 }
 
