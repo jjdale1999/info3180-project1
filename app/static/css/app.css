@@ -132,7 +132,7 @@ body {
     margin-left:20%;
     /* border-top: 6px solid rgb(72,141,218); */
     width:50%;
-    position:fixed;
+    position:relative;
 
 
 }
